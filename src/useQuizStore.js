@@ -27,24 +27,28 @@ export const useQuizStore = defineStore("quiz", {
         ],
       },
       {
-         title: "What are your favorite topics?",
-         subtitle: "Choose up to 3 topics you like",
-         answers: [
-           "Werewolf",
-           "Action",
-           "Romance",
-           "Young Adult",
-           "Bad Boy",
-           "Royal Obsession",
-           "Billionaire"
-         ],
-       },
+        title: "What are your favorite topics?",
+        subtitle: "Choose up to 3 topics you like",
+        answers: [
+          "Werewolf",
+          "Action",
+          "Romance",
+          "Young Adult",
+          "Bad Boy",
+          "Royal Obsession",
+          "Billionaire",
+        ],
+      },
     ],
     selectedAnswers: [],
   }),
   actions: {
     selectAnswer(answer) {
-      this.selectedAnswers = answer;
+      const selected = this.selectedAnswers;
+      if (selected.indexOf(answer) === -1) {
+        selected.push(answer);
+        console.log(selected);
+      }
     },
   },
 });

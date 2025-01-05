@@ -2,13 +2,14 @@
   <div class="component">
     <BackButton @onBackButton="changeBackCurrentPage"></BackButton>
     <div>{{ currentPage }}</div>
-    <component :is="currentComponent"></component>
+    <KeepAlive><component :is="currentComponent"></component></KeepAlive>
     <NextButton @onNextButton="changeNextCurrentPage"></NextButton>
   </div>
 </template>
 
 <script setup>
 import { reactive, ref, computed } from "vue";
+import { useQuizStore } from "/src/useQuizStore.js";
 import Languages from "./components/Languages.vue";
 import Gender from "./components/Gender.vue";
 import Age from "./components/Age.vue";
@@ -17,7 +18,10 @@ import Topics from "./components/Topics.vue";
 import NextButton from "./components/NextButton.vue";
 import BackButton from "./components/BackButton.vue";
 
+const store = useQuizStore();
+
 const currentPage = ref(1);
+
 const allComponents = reactive({
   1: Languages,
   2: Gender,
@@ -30,39 +34,14 @@ const currentComponent = computed(() => {
   return allComponents[currentPage.value];
 });
 
-// const currentProps = computed(() => {
-//   if (selectedAge.value) {
-//     return { dislikesList };
-//   } else if (selectedGender.value) {
-//     return { ageList, getSelectedAge };
-//   } else if (selectedLanguage.value) {
-//     return { genderList, getSelectedGender };
-//   } else {
-//     return { languages, getSelectedLanguage };
-//   }
-// });
-
 const changeNextCurrentPage = () => {
   currentPage.value++;
 };
 const changeBackCurrentPage = () => {
-  if (currentPage.value == 1) {
-    return;
-  } else {
+  if (currentPage.value > 1) {
     currentPage.value--;
   }
 };
-// const getSelectedLanguage = (language) => {
-//   selectedLanguage.value = language;
-// };
-
-// const getSelectedGender = (gender) => {
-//   selectedGender.value = gender;
-// };
-
-// const getSelectedAge = (age) => {
-//   selectedAge.value = age;
-// };
 </script>
 
 <style scoped>

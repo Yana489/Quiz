@@ -1,7 +1,12 @@
 <template>
   <div>
     <h2 class="main-heading">{{ store.questions[2].title }}</h2>
-    <button v-for="age in ages" :key="age" class="age-button">
+    <button
+      v-for="age in ages"
+      :key="age"
+      class="age-button"
+      @click="selectAge(age)"
+    >
       {{ age }}
     </button>
   </div>
@@ -12,6 +17,10 @@ import { useQuizStore } from "/src/useQuizStore.js";
 
 const store = useQuizStore();
 const ages = store.questions[2].answers;
+
+const selectAge = (age) => {
+  store.selectAnswer(age);
+};
 </script>
 
 <style scoped>

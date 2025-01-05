@@ -2,7 +2,12 @@
   <div>
     <h2 class="main-heading">{{ store.questions[1].title }}</h2>
     <h4 class="sub-heading">{{ store.questions[1].subtitle }}</h4>
-    <button v-for="gender in genders" :key="gender" class="gender-button">
+    <button
+      v-for="gender in genders"
+      :key="gender"
+      class="gender-button"
+      @click="selectGender(gender)"
+    >
       {{ gender }}
     </button>
   </div>
@@ -14,6 +19,9 @@ import { useQuizStore } from "/src/useQuizStore.js";
 const store = useQuizStore();
 const genders = store.questions[1].answers;
 
+const selectGender = (gender) => {
+  store.selectAnswer(gender);
+};
 </script>
 
 <style scoped>
@@ -33,5 +41,4 @@ const genders = store.questions[1].answers;
 .gender-button:focus {
   background-color: #2d1f5d;
 }
-
 </style>

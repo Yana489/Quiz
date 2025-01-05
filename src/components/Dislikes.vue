@@ -1,13 +1,9 @@
 <template>
   <div>
     <h2 class="main-heading">{{ store.questions[3].title }}</h2>
-    <div
-      v-for="dislike in dislikes"
-      :key="dislike"
-      class="dislike-container"
-    >
-      <form class="dislike-form">
-        <input multiple type="checkbox" />
+    <div v-for="dislike in dislikes" :key="dislike" class="dislike-container">
+      <form class="dislike-form" @click="selectDislike(dislike)">
+        <input type="checkbox" />
         {{ dislike }}
       </form>
     </div>
@@ -19,6 +15,10 @@ import { useQuizStore } from "/src/useQuizStore.js";
 
 const store = useQuizStore();
 const dislikes = store.questions[3].answers;
+
+const selectDislike = (dislike) => {
+  store.selectAnswer(dislike);
+};
 </script>
 
 <style scoped>

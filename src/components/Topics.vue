@@ -2,7 +2,12 @@
   <div>
     <h2 class="main-heading">{{ store.questions[4].title }}</h2>
     <h4 class="sub-heading">{{ store.questions[4].subtitle }}</h4>
-    <button v-for="topic in topics" :key="topic" class="topic-button">
+    <button
+      v-for="topic in topics"
+      :key="topic"
+      class="topic-button"
+      @click="selectTopic(topic)"
+    >
       {{ topic }}
     </button>
   </div>
@@ -14,6 +19,9 @@ import { useQuizStore } from "/src/useQuizStore.js";
 const store = useQuizStore();
 const topics = store.questions[4].answers;
 
+const selectTopic = (topic) => {
+  store.selectAnswer(topic);
+};
 </script>
 
 <style scoped>
@@ -33,5 +41,4 @@ const topics = store.questions[4].answers;
 .topic-button:focus {
   background-color: #2d1f5d;
 }
-
 </style>
