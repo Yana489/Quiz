@@ -7,15 +7,18 @@ export const useQuizStore = defineStore("quiz", {
         title: "What is your preferred language?",
         subtitle: "Choose language",
         answers: ["English", "French", "German", "Spanish"],
+        selectedAnswer: null,
       },
       {
         title: "What gender do you identify with?",
         subtitle: "Please share how you identify yourself",
         answers: ["Female", "Male", "Other"],
+        selectedAnswer: null,
       },
       {
         title: "What is your age?",
         answers: ["18-29 years", "30-39 years", "40-49 years", "50+"],
+        selectedAnswer: null,
       },
       {
         title: "What do you hate the most in a book?",
@@ -25,6 +28,7 @@ export const useQuizStore = defineStore("quiz", {
           "Lack of humor",
           "Way too generic ending",
         ],
+        selectedAnswer: [],
       },
       {
         title: "What are your favorite topics?",
@@ -38,17 +42,8 @@ export const useQuizStore = defineStore("quiz", {
           "Royal Obsession",
           "Billionaire",
         ],
+        selectedAnswer: [],
       },
     ],
-    selectedAnswers: [],
   }),
-  actions: {
-    selectAnswer(answer) {
-      const selected = this.selectedAnswers;
-      if (selected.indexOf(answer) === -1) {
-        selected.push(answer);
-        console.log(selected);
-      }
-    },
-  },
 });

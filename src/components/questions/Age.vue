@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h2 class="main-heading">{{ store.questions[0].title }}</h2>
-    <h4 class="sub-heading">{{ store.questions[0].subtitle }}</h4>
+    <h2 class="main-heading">{{ store.questions[2].title }}</h2>
     <button
-      v-for="language in languages"
-      :key="language"
-      class="language-button"
-      @click="selectLanguage(language)"
+      v-for="age in ages"
+      :key="age"
+      class="age-button"
+      :class="{ selected: store.questions[2].selectedAnswer === age }"
+      @click="selectAge(age)"
     >
-      {{ language }}
+      {{ age }}
     </button>
   </div>
 </template>
@@ -17,15 +17,15 @@
 import { useQuizStore } from "/src/useQuizStore.js";
 
 const store = useQuizStore();
-const languages = store.questions[0].answers;
+const ages = store.questions[2].answers;
 
-const selectLanguage = (language) => {
-  store.selectAnswer(language);
+const selectAge = (age) => {
+  store.questions[2].selectedAnswer = age;
 };
 </script>
 
 <style scoped>
-.language-button {
+.age-button {
   display: block;
   width: 100%;
   margin: 10px 0;
@@ -39,7 +39,7 @@ const selectLanguage = (language) => {
   transition: background-color 0.3s ease;
 }
 
-.language-button:focus {
+.age-button.selected {
   background-color: #2d1f5d;
 }
 </style>

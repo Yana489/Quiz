@@ -1,22 +1,25 @@
 <template>
   <div class="component">
-    <BackButton @onBackButton="changeBackCurrentPage"></BackButton>
-    <div>{{ currentPage }}</div>
-    <KeepAlive><component :is="currentComponent"></component></KeepAlive>
-    <NextButton @onNextButton="changeNextCurrentPage"></NextButton>
+    <Stepper
+      :currentPage="currentPage"
+      @changeNextCurrentPage="changeNextCurrentPage"
+      @changeBackCurrentPage="changeBackCurrentPage"
+      ><component :is="currentComponent"></component
+    ></Stepper>
   </div>
 </template>
 
 <script setup>
 import { reactive, ref, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
-import Languages from "./components/Languages.vue";
-import Gender from "./components/Gender.vue";
-import Age from "./components/Age.vue";
-import Dislikes from "./components/Dislikes.vue";
-import Topics from "./components/Topics.vue";
-import NextButton from "./components/NextButton.vue";
-import BackButton from "./components/BackButton.vue";
+import Languages from "./components/questions/Languages.vue";
+import Gender from "./components/questions/Gender.vue";
+import Age from "./components/questions/Age.vue";
+import Dislikes from "./components/questions/Dislikes.vue";
+import Topics from "./components/questions/Topics.vue";
+
+
+import Stepper from "./components/Stepper.vue";
 
 const store = useQuizStore();
 
@@ -35,7 +38,7 @@ const currentComponent = computed(() => {
 });
 
 const changeNextCurrentPage = () => {
-  currentPage.value++;
+    currentPage.value++;
 };
 const changeBackCurrentPage = () => {
   if (currentPage.value > 1) {

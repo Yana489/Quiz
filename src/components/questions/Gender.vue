@@ -6,6 +6,7 @@
       v-for="gender in genders"
       :key="gender"
       class="gender-button"
+      :class="{ selected: store.questions[1].selectedAnswer === gender }"
       @click="selectGender(gender)"
     >
       {{ gender }}
@@ -20,7 +21,7 @@ const store = useQuizStore();
 const genders = store.questions[1].answers;
 
 const selectGender = (gender) => {
-  store.selectAnswer(gender);
+  store.questions[1].selectedAnswer = gender;
 };
 </script>
 
@@ -38,7 +39,7 @@ const selectGender = (gender) => {
   text-align: center;
 }
 
-.gender-button:focus {
+.gender-button.selected {
   background-color: #2d1f5d;
 }
 </style>

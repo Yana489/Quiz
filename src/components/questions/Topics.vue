@@ -6,6 +6,7 @@
       v-for="topic in topics"
       :key="topic"
       class="topic-button"
+      :class="{ selected: store.questions[4].selectedAnswer.includes(topic) }"
       @click="selectTopic(topic)"
     >
       {{ topic }}
@@ -20,8 +21,13 @@ const store = useQuizStore();
 const topics = store.questions[4].answers;
 
 const selectTopic = (topic) => {
-  store.selectAnswer(topic);
+  if (store.questions[4].selectedAnswer.includes(topic)) {
+    store.questions[4].selectedAnswer.filter((topic) => topic != topic);
+  } else if (store.questions[4].selectedAnswer.length < 3) {
+    store.questions[4].selectedAnswer.push(topic);
+  }
 };
+
 </script>
 
 <style scoped>
@@ -38,7 +44,7 @@ const selectTopic = (topic) => {
   text-align: center;
 }
 
-.topic-button:focus {
+.topic-button.selected {
   background-color: #2d1f5d;
 }
 </style>
