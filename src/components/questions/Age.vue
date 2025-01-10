@@ -1,45 +1,7 @@
 <template>
-  <div>
-    <h2 class="main-heading">{{ store.questions[2].title }}</h2>
-    <button
-      v-for="age in ages"
-      :key="age"
-      class="age-button"
-      :class="{ selected: store.questions[2].selectedAnswer === age }"
-      @click="selectAge(age)"
-    >
-      {{ age }}
-    </button>
-  </div>
+  <QuestionContainer :currentPage="3" />
 </template>
 
 <script setup>
-import { useQuizStore } from "/src/useQuizStore.js";
-
-const store = useQuizStore();
-const ages = store.questions[2].answers;
-
-const selectAge = (age) => {
-  store.questions[2].selectedAnswer = age;
-};
+import QuestionContainer from "./QuestionContainer.vue";
 </script>
-
-<style scoped>
-.age-button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 15px;
-  font-size: 18px;
-  background-color: #6d32c6;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.age-button.selected {
-  background-color: #2d1f5d;
-}
-</style>

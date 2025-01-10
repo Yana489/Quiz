@@ -6,7 +6,7 @@
       v-for="topic in topics"
       :key="topic"
       class="topic-button"
-      :class="{ selected: store.questions[4].selectedAnswer.includes(topic) }"
+      :class="{ selected: isSelectedTopic(topic)}"
       @click="selectTopic(topic)"
     >
       {{ topic }}
@@ -21,17 +21,21 @@ const store = useQuizStore();
 const topics = store.questions[4].answers;
 
 const selectTopic = (topic) => {
-  if (store.questions[4].selectedAnswer.includes(topic)) {
-    store.questions[4].selectedAnswer.filter((topic) => topic != topic);
+  if (isSelectedTopic(topic)) {
+    store.questions[4].selectedAnswer = store.questions[4].selectedAnswer.filter((item) => item != topic);
   } else if (store.questions[4].selectedAnswer.length < 3) {
     store.questions[4].selectedAnswer.push(topic);
   }
 };
 
+const isSelectedTopic = (topic) => {
+  return store.questions[4].selectedAnswer.includes(topic);
+};
 </script>
 
 <style scoped>
 .topic-button {
+  font-family: "Delius";
   margin: 5px;
   padding: 10px 20px;
   font-size: 16px;

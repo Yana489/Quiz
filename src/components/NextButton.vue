@@ -13,6 +13,7 @@ const onNextButton = () => {
 
 <style scoped>
 .next-button {
+  font-family: "Delius";
   width: 50%;
   margin-top: 20px;
   padding: 15px;

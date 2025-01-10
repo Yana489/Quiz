@@ -10,14 +10,13 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, watch } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 import Languages from "./components/questions/Languages.vue";
 import Gender from "./components/questions/Gender.vue";
 import Age from "./components/questions/Age.vue";
 import Dislikes from "./components/questions/Dislikes.vue";
 import Topics from "./components/questions/Topics.vue";
-
 
 import Stepper from "./components/Stepper.vue";
 
@@ -38,7 +37,7 @@ const currentComponent = computed(() => {
 });
 
 const changeNextCurrentPage = () => {
-    currentPage.value++;
+  currentPage.value++;
 };
 const changeBackCurrentPage = () => {
   if (currentPage.value > 1) {
@@ -49,6 +48,7 @@ const changeBackCurrentPage = () => {
 
 <style scoped>
 .component {
+  font-family: "Delius";
   max-width: 400px;
   margin: 70px auto;
   padding: 20px;
