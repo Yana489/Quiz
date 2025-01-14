@@ -36,9 +36,9 @@ const currentComponent = computed(() => {
 });
 
 const changeNextCurrentPage = () => {
-  // if (store.questions[currentPage.value - 1].selectedAnswer != null) {
+  if (store.questions[currentPage.value - 1].selectedAnswer && store.questions[currentPage.value - 1].selectedAnswer.length > 0) {
     currentPage.value++;
-  // }
+   }
 };
 const changeBackCurrentPage = () => {
   if (currentPage.value > 1) {

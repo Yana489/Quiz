@@ -11,9 +11,7 @@
         @click="selectAnswer(answer)"
       >
         <div v-if="currentPage === 4">
-          <div class="dislike-container">
             <input type="checkbox" :checked="isSelectedAnswer(answer)" />
-          </div>
         </div>
         {{ answer }}
       </button>
@@ -39,31 +37,26 @@ const question = store.questions[props.currentPage - 1];
 const selectAnswer = (answer) => {
   if (props.currentPage === 4 || props.currentPage === 5) {
     if (isSelectedAnswer(answer)) {
-      question.selectedAnswer = question.selectedAnswer.filter(
-        (item) => item != answer
-      );
-    } else if (question.selectedAnswer.length < 3) {
+      removeAnswer(answer);
+    } else if (
+      props.currentPage === 4 ||
+      (props.currentPage === 5 && question.selectedAnswer.length < 3)
+    ) {
       question.selectedAnswer.push(answer);
     }
   } else {
     question.selectedAnswer = answer;
   }
+};
 
-  // if (question.selectedAnswer) {
-  //   if (isSelectedAnswer(answer)) {
-  //     question.selectedAnswer = question.selectedAnswer.filter(
-  //       (item) => item != answer
-  //     );
-  //   } else if(question.selectedAnswer.length < 3) {
-  //     question.selectedAnswer.push(answer);
-  //   }
-  // } else {
-  //   question.selectedAnswer = answer;
-  // }
+const removeAnswer = (answer) => {
+  question.selectedAnswer = question.selectedAnswer.filter(
+    (item) => item != answer
+  );
 };
 
 const isSelectedAnswer = (answer) => {
-  if (question.selectedAnswer && question.selectedAnswer.length > 1) {
+  if (question.selectedAnswer && question.selectedAnswer.length > 0) {
     return question.selectedAnswer.includes(answer);
   } else {
     return question.selectedAnswer === answer;
@@ -74,7 +67,9 @@ const isSelectedAnswer = (answer) => {
 <style scoped>
 .answer-button {
   font-family: "Delius";
-  display: block;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
   width: 100%;
   margin: 10px 0;
   padding: 15px;
@@ -82,6 +77,7 @@ const isSelectedAnswer = (answer) => {
   background-color: #6d32c6;
   color: white;
   border: none;
+  accent-color: #737aa8;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -89,9 +85,5 @@ const isSelectedAnswer = (answer) => {
 
 .answer-button.selected {
   background-color: #2d1f5d;
-}
-.dislike-container {
-  width: 92%;
-  accent-color: #737aa8;
 }
 </style>
