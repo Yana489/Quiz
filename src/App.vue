@@ -17,7 +17,6 @@ import Gender from "./components/questions/Gender.vue";
 import Age from "./components/questions/Age.vue";
 import Dislikes from "./components/questions/Dislikes.vue";
 import Topics from "./components/questions/Topics.vue";
-
 import Stepper from "./components/Stepper.vue";
 
 const store = useQuizStore();
@@ -37,7 +36,9 @@ const currentComponent = computed(() => {
 });
 
 const changeNextCurrentPage = () => {
-  currentPage.value++;
+  // if (store.questions[currentPage.value - 1].selectedAnswer != null) {
+    currentPage.value++;
+  // }
 };
 const changeBackCurrentPage = () => {
   if (currentPage.value > 1) {
