@@ -4,15 +4,36 @@
     <h4 class="sub-heading">{{ question.subtitle }}</h4>
     <div>
       <button
-        v-for="answer in question.answers"
+        v-for="(answer, index) in question.answers"
         :key="answer"
         class="answer-button"
         :class="{ selected: isSelectedAnswer(answer) }"
         @click="selectAnswer(answer)"
       >
-        <div v-if="currentPage === 4">
+          <div v-if="currentPage === 4">
             <input type="checkbox" :checked="isSelectedAnswer(answer)" />
-        </div>
+          </div>
+          <div v-else-if="currentPage === 5 && index === 0">
+            <img :src="Werewolf" alt="Werewolf" />
+          </div>
+          <div v-else-if="currentPage === 5 && index === 1">
+            <img :src="Action" alt="Action" />
+          </div>
+          <div v-else-if="currentPage === 5 && index === 2">
+            <img :src="Romance" alt="Romance" />
+          </div>
+          <div v-else-if="currentPage === 5 && index === 3">
+            <img :src="Adult" alt="Young Adult" />
+          </div>
+          <div v-else-if="currentPage === 5 && index === 4">
+            <img :src="BadBoy" alt="Bad Boy" />
+          </div>
+          <div v-else-if="currentPage === 5 && index === 5">
+            <img :src="Royal" alt="Royal Obsession" />
+          </div>
+          <div v-else-if="currentPage === 5 && index === 6">
+            <img :src="Billionaire" alt="Billionaire" />
+          </div>
         {{ answer }}
       </button>
     </div>
@@ -20,6 +41,14 @@
 </template>
 
 <script setup>
+import Werewolf from "/src/assets/icons/Werewolf.svg";
+import Action from "/src/assets/icons/Action.svg";
+import Romance from "/src/assets/icons/Romance.svg";
+import Adult from "/src/assets/icons/Adult.svg";
+import BadBoy from "/src/assets/icons/BadBoy.svg";
+import Royal from "/src/assets/icons/Royal.svg";
+import Billionaire from "/src/assets/icons/Billionaire.svg";
+
 import { defineProps, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 

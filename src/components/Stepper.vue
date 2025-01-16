@@ -1,5 +1,7 @@
 <template>
-  <BackButton @onBackButton="emits('changeBackCurrentPage')"></BackButton>
+  <div v-if="currentPage > 1">
+    <BackArrow @onBackArrow="emits('changeBackCurrentPage')"></BackArrow>
+  </div>
   {{ currentPage }}/5
   <div class="stepper-container">
     <div class="stepper" :style="{ width: loaderWidth }"></div>
@@ -9,7 +11,7 @@
 </template>
 
 <script setup>
-import BackButton from "@/components/BackButton.vue";
+import BackArrow from "@/components/BackArrow.vue";
 import NextButton from "@/components/NextButton.vue";
 
 import { defineProps, defineEmits, computed } from "vue";

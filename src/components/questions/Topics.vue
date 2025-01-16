@@ -1,9 +1,9 @@
 <template>
-  <div class="topics-button">
-    <QuestionContainer :currentPage="5" />
-  </div>
+  <QuestionContainer :currentPage="5" />
 </template>
 
 <script setup>
 import QuestionContainer from "./QuestionContainer.vue";
 </script>
+
+<style scoped></style>
