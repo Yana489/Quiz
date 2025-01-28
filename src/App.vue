@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed, watch } from "vue";
+import { reactive, ref, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 import Languages from "./components/questions/Languages.vue";
 import Gender from "./components/questions/Gender.vue";

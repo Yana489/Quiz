@@ -18,12 +18,12 @@ const onBackArrow = () => {
 <style scoped>
 .back-arrow {
   display: flex;
-  background-color: #a995e9;
+  background-color: #6d32c6;
   border-radius: 50px;
   padding: 3px 6px;
 }
 
 .back-arrow:active {
-  background-color: #6d32c6;
+  background-color: #a995e9;
 }
 </style>
