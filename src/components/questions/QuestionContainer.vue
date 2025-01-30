@@ -31,8 +31,15 @@ import BadBoy from "@/components/icons-images/BadBoy.vue";
 import Royal from "@/components/icons-images/Royal.vue";
 import Billionaire from "@/components/icons-images/Billionaire.vue";
 
+import { useI18n } from "vue-i18n";
 import { defineProps, computed, ref, reactive } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
+
+const i18n = useI18n({ useScope: "global" });
+
+function SetLocale(locale) {
+  i18n.locale.value = locale;
+}
 
 const store = useQuizStore();
 const props = defineProps({
@@ -64,7 +71,16 @@ const selectAnswer = (answer) => {
 
   if (!isMultiSelectPage) {
     question.selectedAnswer = answer;
-    console.log(question.selectedAnswer);
+    
+    if (currentPage === 1) {
+      const languages = {
+        "English": "en",
+        "French": "fr",
+        "German": "de",
+        "Spanish": "es"
+      };
+      SetLocale(languages[answer]);
+    }
     return;
   }
 
