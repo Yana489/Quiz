@@ -1,19 +1,25 @@
 <template>
-  <div v-if="currentPage > 1">
+  <div v-if="currentPage > 1 && currentPage < 6">
     <BackArrow @onBackArrow="emits('changeBackCurrentPage')"></BackArrow>
   </div>
-  {{ currentPage }}/5
-  <div class="stepper-container">
-    <div class="stepper" :style="{ width: loaderWidth }"></div>
-  </div>
-  <slot></slot>
-  <NextButton @onNextButton="emits('changeNextCurrentPage')"></NextButton>
+  <template v-if="currentPage < 6"
+    >{{ currentPage }}/5
+    <div class="stepper-container">
+      <div class="stepper" :style="{ width: loaderWidth }"></div>
+    </div>
+    <slot></slot>
+    <NextButton
+      @onNextButton="emits('changeNextCurrentPage')"
+    ></NextButton></template
+  ><VueSpinner v-if="currentPage === 6"></VueSpinner>
+  <Email v-if="currentPage === 7"></Email>
 </template>
 
 <script setup>
 import BackArrow from "@/components/BackArrow.vue";
 import NextButton from "@/components/NextButton.vue";
-
+import Email from "@/components/Email.vue";
+import VueSpinner from "./VueSpinner.vue";
 import { defineProps, defineEmits, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 
@@ -39,7 +45,7 @@ const loaderWidth = computed(() => {
 .stepper-container {
   width: 70%;
   margin: 0 auto;
-  background-color: #6d32c6;
+  background-color: #7a60ce;
   border-radius: 50px;
   overflow: hidden;
 }

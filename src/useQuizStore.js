@@ -8,18 +8,21 @@ export const useQuizStore = defineStore("quiz", {
         subtitle: "Choose language",
         answers: ["English", "French", "German", "Spanish"],
         selectedAnswer: null,
+        type: "single-select",
       },
       {
         title: "gender.title",
         subtitle: "gender.subtitle",
         answers: ["gender.female", "gender.male", "gender.other"],
         selectedAnswer: null,
+        type: "single-select",
       },
       {
         title: "age.title",
         subtitle: "age.subtitle",
         answers: ["age.fromEighteen", "age.fromThirty", "age.fromForty", "age.fromFifty"],
         selectedAnswer: null,
+        type: "single-select",
       },
       {
         title: "dislikes.title",
@@ -31,6 +34,7 @@ export const useQuizStore = defineStore("quiz", {
           "dislikes.ending",
         ],
         selectedAnswer: [],
+        type: "multiple-select",
       },
       {
         title: "topics.title",
@@ -45,6 +49,7 @@ export const useQuizStore = defineStore("quiz", {
           "topics.billionaire",
         ],
         selectedAnswer: [],
+        type: "bubble",
       },
     ],
   }),

@@ -1,0 +1,36 @@
+export default {
+   gender: {
+     title: "What gender do you identify with?",
+     subtitle: "Please share how you identify yourself",
+     female: "Female",
+     male: "Male",
+     other: "Other",
+   },
+   age: {
+     title: "What is your age?",
+     subtitle: "",
+     fromEighteen: "18-29 years",
+     fromThirty: "30-39 years",
+     fromForty: "40-49 years",
+     fromFifty: "50+",
+   },
+   dislikes: {
+     title: "What do you hate the most in a book?",
+     subtitle: "",
+     logic: "Lack of logic",
+     speed: "A slow speed",
+     humor: "Lack of humor",
+     ending: "Way too generic ending",
+   },
+   topics: {
+     title: "What are your favorite topics?",
+     subtitle: "Choose up to 3 topics you like",
+     werewolf: "Werewolf",
+     action: "Action",
+     romance: "Romance",
+     youngAdult: "Young Adult",
+     badBoy: "Bad Boy",
+     royal: "Royal Obsession",
+     billionaire: "Billionaire",
+   },
+ };

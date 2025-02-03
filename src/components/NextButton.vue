@@ -18,7 +18,7 @@ const onNextButton = () => {
   margin-top: 20px;
   padding: 15px;
   font-size: 18px;
-  background-color: #6d32c6;
+  background-color: #7a60ce;
   color: white;
   border: none;
   border-radius: 50px;

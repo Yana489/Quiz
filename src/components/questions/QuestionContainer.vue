@@ -1,21 +1,24 @@
 <template>
   <div>
-    <h2 class="main-heading">{{ $t(question.title) }}</h2>
-    <h4 class="sub-heading">{{ $t(question.subtitle) }}</h4>
+    <h2>{{ $t(question.title) }}</h2>
+    <h4>{{ $t(question.subtitle) }}</h4>
     <div>
       <button
         v-for="(answer, index) in question.answers"
         :key="answer"
         class="answer-button"
-        :class="{ selected: isSelectedAnswer(answer) }"
+        :class="{
+          selected: isSelectedAnswer(answer),
+          bubble: question.type === 'bubble',
+        }"
         @click="selectAnswer(answer)"
       >
-        <div v-if="currentPage === 4">
+        <template v-if="question.type === 'multiple-select'">
           <input type="checkbox" :checked="isSelectedAnswer(answer)" />
-        </div>
-        <div v-if="currentPage === 5">
-          <component :is="currentIcon(index)" />
-        </div>
+        </template>
+        <template v-if="question.type === 'bubble'">
+          <img :src="currentIcon(index)" alt="Icon" />
+        </template>
         {{ $t(answer) }}
       </button>
     </div>
@@ -23,17 +26,10 @@
 </template>
 
 <script setup>
-import Werewolf from "@/components/icons-images/Werewolf.vue";
-import Action from "@/components/icons-images/Action.vue";
-import Romance from "@/components/icons-images/Romance.vue";
-import Adult from "@/components/icons-images/Adult.vue";
-import BadBoy from "@/components/icons-images/BadBoy.vue";
-import Royal from "@/components/icons-images/Royal.vue";
-import Billionaire from "@/components/icons-images/Billionaire.vue";
-
 import { useI18n } from "vue-i18n";
-import { defineProps, computed, ref, reactive } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
+import { allIcons } from "/src/constants/constants.js";
+import { defineProps, computed, ref, reactive } from "vue";
 
 const i18n = useI18n({ useScope: "global" });
 
@@ -49,16 +45,6 @@ const props = defineProps({
   },
 });
 
-const allIcons = reactive({
-  0: Werewolf,
-  1: Action,
-  2: Romance,
-  3: Adult,
-  4: BadBoy,
-  5: Royal,
-  6: Billionaire,
-});
-
 const currentIcon = (index) => {
   return allIcons[index];
 };
@@ -71,13 +57,13 @@ const selectAnswer = (answer) => {
 
   if (!isMultiSelectPage) {
     question.selectedAnswer = answer;
-    
+
     if (currentPage === 1) {
       const languages = {
-        "English": "en",
-        "French": "fr",
-        "German": "de",
-        "Spanish": "es"
+        English: "en",
+        French: "fr",
+        German: "de",
+        Spanish: "es",
       };
       SetLocale(languages[answer]);
     }
@@ -110,7 +96,7 @@ const selectAnswer = (answer) => {
 
 const removeAnswer = (answer) => {
   question.selectedAnswer = question.selectedAnswer.filter(
-    (item) => item != answer
+    (item) => item !== answer
   );
 };
 
@@ -133,7 +119,7 @@ const isSelectedAnswer = (answer) => {
   margin: 10px 0;
   padding: 15px;
   font-size: 18px;
-  background-color: #6d32c6;
+  background-color: #7a60ce;
   color: white;
   border: none;
   accent-color: #737aa8;
@@ -144,5 +130,15 @@ const isSelectedAnswer = (answer) => {
 
 .answer-button.selected {
   background-color: #2d1f5d;
+}
+
+.answer-button.bubble {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  font-size: 13px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

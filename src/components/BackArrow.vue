@@ -10,6 +10,7 @@
 <script setup>
 import BackArrow from "../assets/icons/Back-Arrow.svg";
 import { defineEmits } from "vue";
+
 const emits = defineEmits(["onBackArrow"]);
 const onBackArrow = () => {
   emits("onBackArrow");
@@ -18,9 +19,10 @@ const onBackArrow = () => {
 <style scoped>
 .back-arrow {
   display: flex;
-  background-color: #6d32c6;
+  background-color: #7a60ce;
   border-radius: 50px;
   padding: 3px 6px;
+  cursor: pointer;
 }
 
 .back-arrow:active {
