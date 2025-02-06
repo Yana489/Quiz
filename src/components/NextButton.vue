@@ -1,31 +1,50 @@
 <template>
-  <button class="next-button" @click="onNextButton">Next</button>
+  <button class="next-button" :disabled="isDisabled" @click="onNextButton">
+    Next
+  </button>
 </template>
 
 <script setup>
-import { defineEmits } from "vue";
+import { defineEmits, defineProps } from "vue";
 
 const emits = defineEmits(["onNextButton"]);
+
+const props = defineProps({
+  isDisabled: {
+    type: Boolean,
+    required: true,
+  },
+});
+
 const onNextButton = () => {
-  emits("onNextButton");
+  if (!props.isDisabled) {
+    emits("onNextButton");
+  }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/style.scss";
+
 .next-button {
-  font-family: "Delius";
+  font-family: $font-family;
   width: 50%;
   margin-top: 20px;
   padding: 15px;
-  font-size: 18px;
-  background-color: #7a60ce;
-  color: white;
+  font-size: $font-size;
+  background-color: $color_1;
+  color: $text-color;
   border: none;
-  border-radius: 50px;
+  border-radius: $border-radius;
   cursor: pointer;
-}
+  transition: $transition;
 
-.next-button:hover {
-  background-color: #2d1f5d;
+  &:disabled {
+    background-color: $color_1;
+    cursor: none;
+  }
+  &:hover {
+    background-color: $color_2;
+  }
 }
 </style>

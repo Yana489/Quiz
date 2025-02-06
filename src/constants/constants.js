@@ -3,6 +3,8 @@ import Gender from "../components/questions/Gender.vue";
 import Age from "../components/questions/Age.vue";
 import Dislikes from "../components/questions/Dislikes.vue";
 import Topics from "../components/questions/Topics.vue";
+// import SubmitEmail from "@/components/SubmitEmail.vue";
+// import Spinner from "@/components/Spinner.vue";
 
 import Werewolf from "/src/assets/icons/Werewolf.svg";
 import Action from "/src/assets/icons/Action.svg";
@@ -18,6 +20,8 @@ export const allComponents = {
   3: Age,
   4: Dislikes,
   5: Topics,
+  // 6: Spinner,
+  // 7: SubmitEmail,
 };
 
 export const allIcons = {

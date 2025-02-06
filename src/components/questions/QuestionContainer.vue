@@ -109,36 +109,38 @@ const isSelectedAnswer = (answer) => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/style.scss";
+
 .answer-button {
-  font-family: "Delius";
+  font-family: $font-family;
   display: flex;
   justify-content: center;
   gap: 5px;
   width: 100%;
   margin: 10px 0;
   padding: 15px;
-  font-size: 18px;
-  background-color: #7a60ce;
-  color: white;
+  font-size: $font-size;
+  background-color: $color_1;
+  color: $text-color;
   border: none;
   accent-color: #737aa8;
   border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  transition: $transition;
 
-.answer-button.selected {
-  background-color: #2d1f5d;
-}
+  &.selected {
+    background-color: $color_2;
+  }
 
-.answer-button.bubble {
-  border-radius: 50px;
-  width: 100px;
-  height: 100px;
-  font-size: 13px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
+  &.bubble {
+    border-radius: $border-radius;
+    width: 100px;
+    height: 100px;
+    font-size: 13px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

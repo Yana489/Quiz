@@ -16,16 +16,19 @@ const onBackArrow = () => {
   emits("onBackArrow");
 };
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
+@import "@/assets/style.scss";
+
 .back-arrow {
   display: flex;
-  background-color: #7a60ce;
-  border-radius: 50px;
+  background-color: $color_1;
+  border-radius: $border-radius;
   padding: 3px 6px;
   cursor: pointer;
-}
 
-.back-arrow:active {
-  background-color: #a995e9;
+  &:active {
+    background-color: $color_4;
+  }
 }
 </style>

@@ -20,7 +20,12 @@ export const useQuizStore = defineStore("quiz", {
       {
         title: "age.title",
         subtitle: "age.subtitle",
-        answers: ["age.fromEighteen", "age.fromThirty", "age.fromForty", "age.fromFifty"],
+        answers: [
+          "age.fromEighteen",
+          "age.fromThirty",
+          "age.fromForty",
+          "age.fromFifty",
+        ],
         selectedAnswer: null,
         type: "single-select",
       },

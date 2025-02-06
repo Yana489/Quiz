@@ -1,14 +1,16 @@
 <template>
   <div class="spinner-container">
-    <VueSpinner class="spinner"></VueSpinner>{{ loader }}%
+    <VueSpinner class="spinner"></VueSpinner>
+    <p>{{ loader }}%</p>
     <p>Finding collections for you...</p>
   </div>
 </template>
 
 <script setup>
 import { VueSpinner } from "vue3-spinners";
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
 
+const emit = defineEmits(["changeNextPage"]);
 const loader = ref(0);
 let interval;
 
@@ -17,19 +19,21 @@ interval = setInterval(() => {
     loader.value += 1;
   } else {
     clearInterval(interval);
+    emit("changeNextPage");
   }
 }, 50);
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/style.scss";
+
 .spinner-container {
-  color: #6d32c6;
-  font-family: "Delius";
+  color: $color_1;
+  font-family: $font-family;
   max-width: 400px;
   margin: 170px auto;
   text-align: center;
 }
-
 .spinner {
   font-size: 100px;
 }
