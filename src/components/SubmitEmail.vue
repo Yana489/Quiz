@@ -1,10 +1,10 @@
 <template>
-  <div class="email-container">
-    <h2 class="email-title">E-mail</h2>
-    <h4 class="email-subtitle">Enter your email to get full access</h4>
+  <div>
+    <h2>E-mail</h2>
+    <h4>Enter your email to get full access</h4>
     <EmailInput
       :modelValue="email"
-      @update:modalValue="updateNewValue"
+      @update:modelValue="updateNewValue"
     ></EmailInput>
     <p class="error-message">{{ error }}</p>
     <p class="email-agree">
@@ -15,8 +15,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
 import EmailInput from "@/components/EmailInput.vue";
+
+const emit = defineEmits(["submitEmail"]);
 
 const email = ref("");
 const error = ref("");
@@ -30,22 +32,20 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-const submit = () => {
-  error.value = "";
+const showError = () => {
   if (email.value === "") {
     error.value = "You need to provide an email.";
   } else if (!validateEmail(email.value)) {
     error.value = "Please enter a valid email address.";
   } else {
-    clearEmail();
+    error.value = "";
+    emit("submitEmail");
   }
 };
 
 const updateNewValue = (newValue) => {
   email.value = newValue;
-  if (newValue && validateEmail(newValue)) {
-    submit();
-  }
+  showError();
 };
 </script>
 
@@ -61,10 +61,10 @@ const updateNewValue = (newValue) => {
   width: 300px;
   margin: 0 auto;
   padding-bottom: 50px;
+}
 
-  &span {
-    color: $color_1;
-    cursor: pointer;
-  }
+span {
+  color: $color_1;
+  cursor: pointer;
 }
 </style>

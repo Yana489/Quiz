@@ -11,6 +11,7 @@ import { VueSpinner } from "vue3-spinners";
 import { ref, defineEmits } from "vue";
 
 const emit = defineEmits(["changeNextPage"]);
+
 const loader = ref(0);
 let interval;
 
@@ -28,7 +29,7 @@ interval = setInterval(() => {
 @import "@/assets/style.scss";
 
 .spinner-container {
-  color: $color_1;
+  color: $color_2;
   font-family: $font-family;
   max-width: 400px;
   margin: 170px auto;
@@ -36,5 +37,6 @@ interval = setInterval(() => {
 }
 .spinner {
   font-size: 100px;
+  color: $color_1;
 }
 </style>

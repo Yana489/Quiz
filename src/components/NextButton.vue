@@ -1,5 +1,5 @@
 <template>
-  <button class="next-button" :disabled="isDisabled" @click="onNextButton">
+  <button class="next-button" :disabled="disabled" @click="onNextButton">
     Next
   </button>
 </template>
@@ -10,16 +10,14 @@ import { defineEmits, defineProps } from "vue";
 const emits = defineEmits(["onNextButton"]);
 
 const props = defineProps({
-  isDisabled: {
+  disabled: {
     type: Boolean,
     required: true,
   },
 });
 
 const onNextButton = () => {
-  if (!props.isDisabled) {
     emits("onNextButton");
-  }
 };
 </script>
 
@@ -39,12 +37,11 @@ const onNextButton = () => {
   cursor: pointer;
   transition: $transition;
 
-  &:disabled {
-    background-color: $color_1;
-    cursor: none;
-  }
   &:hover {
     background-color: $color_2;
+  }
+  &:disabled {
+    background-color: $color_1;
   }
 }
 </style>

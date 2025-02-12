@@ -13,9 +13,14 @@
     v-if="currentPage === 6"
     @changeNextPage="emits('changeNextCurrentPage')"
   ></Spinner>
-  <SubmitEmail v-if="currentPage === 7"></SubmitEmail>
+  <SubmitEmail
+    v-if="currentPage === 7"
+    @submitEmail="emits('submitEmail')"
+  ></SubmitEmail>
+  <!-- <Thanks v-if="currentPage === 8"></Thanks> -->
   <NextButton
-    v-if="currentPage !== 6"
+    :disabled="disabled"
+    v-if="currentPage !== 6 && currentPage !== 8"
     @onNextButton="emits('changeNextCurrentPage')"
   ></NextButton>
 </template>
@@ -25,17 +30,22 @@ import BackArrow from "@/components/BackArrow.vue";
 import NextButton from "@/components/NextButton.vue";
 import SubmitEmail from "@/components/SubmitEmail.vue";
 import Spinner from "@/components/Spinner.vue";
+// import Thanks from "@/components/Thanks.vue"
 
 import { defineProps, defineEmits, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 
 const store = useQuizStore();
 
-const emits = defineEmits(["changeNextCurrentPage", "changeBackCurrentPage"]);
+const emits = defineEmits(["changeNextCurrentPage", "changeBackCurrentPage","submitEmail"]);
 
 const props = defineProps({
   currentPage: {
     type: Number,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
     required: true,
   },
 });

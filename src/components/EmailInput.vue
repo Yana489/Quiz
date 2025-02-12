@@ -39,5 +39,9 @@ const updateInput = (event) => {
   &::placeholder {
     color: white;
   }
+
+  &:focus {
+    border: 2px solid $color_2;
+  }
 }
 </style>
