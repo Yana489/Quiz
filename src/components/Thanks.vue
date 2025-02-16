@@ -1,19 +1,67 @@
 <template>
   <div class="thanks-title">
-    <h2>Thank you</h2>
-    <h4>for supporting us and passing quiz</h4>
+    <h2>{{ $t("thanks.title") }}</h2>
+    <h4>{{ $t("thanks.subtitle") }}</h4>
   </div>
   <img :src="Check" alt="Check" class="thanks-check" />
   <div class="thanks-download">
     <img :src="Download" alt="Download" class="thanks-icon-download" />
-    <p href="">Download my answers</p>
+    <a href="" @click.prevent="downloadCSV">{{ $t("thanks.download") }}</a>
   </div>
-  <button class="thanks-button">Retake quiz</button>
+  <CommonButton
+    :buttonTitle="$t('thanks.retake')"
+    @onClickButton="retakeQuiz"
+  ></CommonButton>
 </template>
 
 <script setup>
-import Check from "/src/assets/icons/Check.svg";
-import Download from "/src/assets/icons/Download.svg";
+import Check from "/src/assets/icons/check.svg";
+import Download from "/src/assets/icons/download.svg";
+import CommonButton from "@/components/CommonButton.vue";
+import { useQuizStore } from "/src/useQuizStore.js";
+import { useI18n } from "vue-i18n";
+import { defineEmits, defineProps } from "vue";
+
+const { t } = useI18n();
+
+const emit = defineEmits(["retakeQuiz"]);
+
+const store = useQuizStore();
+
+const downloadCSV = () => {
+  const responses = store.questions.map((question, index) => ({
+    order: index + 1,
+    title: t(question.title),
+    type: question.type,
+    answer: Array.isArray(question.selectedAnswer)
+      ? question.selectedAnswer.join(", ")
+      : question.selectedAnswer,
+  }));
+
+  const csvContent = convertToCSV(responses);
+  const blob = new Blob([csvContent], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", "responses.csv");
+  link.click();
+  URL.revokeObjectURL(url);
+};
+
+const convertToCSV = (data) => {
+  const headers = Object.keys(data[0]);
+  const rows = data.map((obj) => headers.map((header) => obj[header]));
+  const headerRow = headers.join(",");
+  const csvRows = [headerRow, ...rows.map((row) => row.join(","))];
+  return csvRows.join("\n");
+};
+
+const retakeQuiz = () => {
+  store.questions.forEach((question) => {
+    question.selectedAnswer = null;
+  });
+  emit("retakeQuiz");
+};
 </script>
 
 <style lang="scss" scoped>
@@ -35,23 +83,5 @@ import Download from "/src/assets/icons/Download.svg";
   gap: 10px;
   margin-bottom: 10px;
   cursor: pointer;
-}
-
-.thanks-button {
-  font-family: $font-family;
-  width: 50%;
-  margin-top: 20px;
-  padding: 15px;
-  font-size: $font-size;
-  background-color: $color_1;
-  color: $text-color;
-  border: none;
-  border-radius: $border-radius;
-  cursor: pointer;
-  transition: $transition;
-
-  &:hover {
-    background-color: $color_2;
-  }
 }
 </style>

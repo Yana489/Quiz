@@ -33,5 +33,23 @@ export default {
      royal: "Obsession royale",
      billionaire: "Milliardaire",
    },
+   spinner: {
+    message: "Recherche de collections pour vous...",
+  },
+  submitEmail: {
+    title: "E-mail",
+    subtitle: "Entrez votre adresse e-mail pour obtenir un accès complet",
+    agree: "En continuant, j'accepte la <span>Politique de confidentialité</span> et les <span>Conditions d'utilisation.</span>",
+    button: "Suivant",
+    errorEmpty: "Vous devez fournir une adresse e-mail.",
+    errorInvalid: "Veuillez entrer une adresse e-mail valide.",
+    placeholder: "Votre E-mail",
+  },
+  thanks: {
+    title: "Merci",
+    subtitle: "pour votre soutien et pour avoir réussi le quiz",
+    download: "Télécharger mes réponses",
+    retake: "Reprendre le quiz",
+  },
  };
  

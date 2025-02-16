@@ -4,7 +4,7 @@
       type="email"
       :value="modelValue"
       @input="updateInput"
-      placeholder="Your email"
+      :placeholder="t('submitEmail.placeholder')"
       class="email-input"
     />
   </div>
@@ -12,6 +12,9 @@
 
 <script setup>
 import { defineProps, defineEmits } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 defineProps(["modelValue"]);
 

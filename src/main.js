@@ -11,7 +11,7 @@ import de from "./locales/de.js";
 import fr from "./locales/fr.js";
 
 const i18n = createI18n({
-  locale: "en",
+  locale: "de",
   fallbackLocale: "en",
   messages: {
     en,

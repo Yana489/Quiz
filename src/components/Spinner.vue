@@ -2,13 +2,16 @@
   <div class="spinner-container">
     <VueSpinner class="spinner"></VueSpinner>
     <p>{{ loader }}%</p>
-    <p>Finding collections for you...</p>
+    <p>{{ $t("spinner.message") }}</p>
   </div>
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
 import { VueSpinner } from "vue3-spinners";
 import { ref, defineEmits } from "vue";
+
+const { t } = useI18n();
 
 const emit = defineEmits(["changeNextPage"]);
 

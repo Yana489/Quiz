@@ -6,13 +6,15 @@
       @changeNextCurrentPage="changeNextCurrentPage"
       @changeBackCurrentPage="changeBackCurrentPage"
       @submitEmail="updateEmail"
+      @changeNextPage="changeNextPage"
+      @retakeQuiz="resetQuiz"
       ><component :is="currentComponent"></component
     ></Stepper>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref, computed, defineEmits } from "vue";
+import { ref, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 import { allComponents } from "./constants/constants.js";
 
@@ -51,6 +53,10 @@ const changeNextCurrentPage = () => {
   }
 };
 
+const changeNextPage = () => {
+  currentPage.value++;
+};
+
 const changeBackCurrentPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
@@ -59,6 +65,11 @@ const changeBackCurrentPage = () => {
 
 const updateEmail = () => {
   isValidateEmail.value = true;
+};
+
+const resetQuiz = () => {
+  console.log("1")
+  currentPage.value = 1;
 };
 </script>
 

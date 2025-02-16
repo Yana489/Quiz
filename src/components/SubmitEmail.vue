@@ -1,24 +1,24 @@
 <template>
   <div>
-    <h2>E-mail</h2>
-    <h4>Enter your email to get full access</h4>
+    <h2>{{ $t("submitEmail.title") }}</h2>
+    <h4>{{ $t("submitEmail.subtitle") }}</h4>
     <EmailInput
       :modelValue="email"
       @update:modelValue="updateNewValue"
     ></EmailInput>
     <p class="error-message">{{ error }}</p>
-    <p class="email-agree">
-      By continuing I agree with <span> Privacy policy </span> and
-      <span>Terms of use.</span>
-    </p>
+    <p class="email-agree" v-html="$t('submitEmail.agree')"></p>
   </div>
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref, defineEmits, computed } from "vue";
+import { useI18n } from "vue-i18n";
 import EmailInput from "@/components/EmailInput.vue";
 
-const emit = defineEmits(["submitEmail"]);
+const emits = defineEmits(["submitEmail"]);
+
+const { t } = useI18n();
 
 const email = ref("");
 const error = ref("");
@@ -34,12 +34,13 @@ const validateEmail = (email) => {
 
 const showError = () => {
   if (email.value === "") {
-    error.value = "You need to provide an email.";
+    error.value = t("submitEmail.errorEmpty");
   } else if (!validateEmail(email.value)) {
-    error.value = "Please enter a valid email address.";
+    error.value = t("submitEmail.errorInvalid");
   } else {
     error.value = "";
-    emit("submitEmail");
+    emits("submitEmail");
+    console.log("11")
   }
 };
 
@@ -47,6 +48,7 @@ const updateNewValue = (newValue) => {
   email.value = newValue;
   showError();
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -63,7 +65,7 @@ const updateNewValue = (newValue) => {
   padding-bottom: 50px;
 }
 
-span {
+.email-agree span {
   color: $color_1;
   cursor: pointer;
 }

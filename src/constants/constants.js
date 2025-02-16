@@ -5,14 +5,15 @@ import Dislikes from "../components/questions/Dislikes.vue";
 import Topics from "../components/questions/Topics.vue";
 import SubmitEmail from "../components/SubmitEmail.vue";
 import Spinner from "../components/Spinner.vue";
+import Thanks from "../components/Thanks.vue";
 
-import Werewolf from "/src/assets/icons/Werewolf.svg";
-import Action from "/src/assets/icons/Action.svg";
-import Romance from "/src/assets/icons/Romance.svg";
-import Adult from "/src/assets/icons/Adult.svg";
-import BadBoy from "/src/assets/icons/BadBoy.svg";
-import Royal from "/src/assets/icons/Royal.svg";
-import Billionaire from "/src/assets/icons/Billionaire.svg";
+import Werewolf from "/src/assets/icons/werewolf.svg";
+import Action from "/src/assets/icons/action.svg";
+import Romance from "/src/assets/icons/romance.svg";
+import Adult from "/src/assets/icons/adult.svg";
+import BadBoy from "/src/assets/icons/badBoy.svg";
+import Royal from "/src/assets/icons/royal.svg";
+import Billionaire from "/src/assets/icons/billionaire.svg";
 
 export const allComponents = {
   1: Languages,
@@ -22,6 +23,7 @@ export const allComponents = {
   5: Topics,
   6: Spinner,
   7: SubmitEmail,
+  8: Thanks,
 };
 
 export const allIcons = {

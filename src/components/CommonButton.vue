@@ -1,30 +1,34 @@
 <template>
-  <button class="next-button" :disabled="disabled" @click="onNextButton">
-    Next
+  <button class="common-button" :disabled="disabled" @click="onClickButton">
+    {{buttonTitle}}
   </button>
 </template>
 
 <script setup>
 import { defineEmits, defineProps } from "vue";
 
-const emits = defineEmits(["onNextButton"]);
+const emits = defineEmits(["onClickButton"]);
 
 const props = defineProps({
   disabled: {
     type: Boolean,
     required: true,
   },
+  buttonTitle:{
+    type: String,
+    required:true
+  }
 });
 
-const onNextButton = () => {
-    emits("onNextButton");
+const onClickButton = () => {
+    emits("onClickButton");
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/style.scss";
 
-.next-button {
+.common-button {
   font-family: $font-family;
   width: 50%;
   margin-top: 20px;
@@ -41,7 +45,7 @@ const onNextButton = () => {
     background-color: $color_2;
   }
   &:disabled {
-    background-color: $color_1;
+    background-color: $color_4;
   }
 }
 </style>

@@ -1,43 +1,31 @@
 <template>
   <div v-if="showBackArrow">
     <BackArrow @onBackArrow="emits('changeBackCurrentPage')"></BackArrow>
-  </div>
-  <template v-if="showStepper"
-    >{{ currentPage }}/5
+    {{ currentPage }}
     <div class="stepper-container">
       <div class="stepper" :style="{ width: loaderWidth }"></div>
     </div>
-    <slot></slot
-  ></template>
-  <Spinner
-    v-if="currentPage === 6"
-    @changeNextPage="emits('changeNextCurrentPage')"
-  ></Spinner>
-  <SubmitEmail
-    v-if="currentPage === 7"
-    @submitEmail="emits('submitEmail')"
-  ></SubmitEmail>
-  <!-- <Thanks v-if="currentPage === 8"></Thanks> -->
-  <NextButton
+  </div>
+  <slot></slot>
+  <CommonButton v-if="currentPage !== 6 && currentPage !== 8"
+    :buttonTitle="$t('submitEmail.button')"
     :disabled="disabled"
-    v-if="currentPage !== 6 && currentPage !== 8"
-    @onNextButton="emits('changeNextCurrentPage')"
-  ></NextButton>
+    @onClickButton="emits('changeNextCurrentPage')"
+  ></CommonButton>
 </template>
 
 <script setup>
 import BackArrow from "@/components/BackArrow.vue";
-import NextButton from "@/components/NextButton.vue";
-import SubmitEmail from "@/components/SubmitEmail.vue";
-import Spinner from "@/components/Spinner.vue";
-// import Thanks from "@/components/Thanks.vue"
+import CommonButton from "@/components/CommonButton.vue";
 
 import { defineProps, defineEmits, computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
+import { useI18n } from "vue-i18n";
 
 const store = useQuizStore();
+const { t } = useI18n();
 
-const emits = defineEmits(["changeNextCurrentPage", "changeBackCurrentPage","submitEmail"]);
+const emits = defineEmits(["changeNextCurrentPage", "changeBackCurrentPage","changeNextPage", "submitEmail"]);
 
 const props = defineProps({
   currentPage: {
@@ -52,10 +40,6 @@ const props = defineProps({
 
 const showBackArrow = computed(() => {
   return props.currentPage > 1 && props.currentPage < 6;
-});
-
-const showStepper = computed(() => {
-  return props.currentPage < 6;
 });
 
 const loaderWidth = computed(() => {

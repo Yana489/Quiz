@@ -33,5 +33,23 @@ export default {
      royal: "Obsesión real",
      billionaire: "Multimillonario",
    },
+   spinner: {
+    message: "Buscando colecciones para ti...",
+  },
+  submitEmail: {
+    title: "Correo electrónico",
+    subtitle: "Ingresa tu correo electrónico para obtener acceso completo",
+    agree: "Al continuar, acepto la <span>Política de privacidad</span> y los <span>Términos de uso.</span>",
+    button: "Siguiente",
+    errorEmpty: "Debes proporcionar un correo electrónico.",
+    errorInvalid: "Por favor, ingresa una dirección de correo electrónico válida.",
+    placeholder: "Tu Correo Electrónico",
+  },
+  thanks: {
+    title: "Gracias",
+    subtitle: "por tu apoyo y por aprobar el quiz",
+    download: "Descargar mis respuestas",
+    retake: "Volver a hacer el quiz",
+  },
  };
  

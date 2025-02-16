@@ -33,4 +33,22 @@ export default {
      royal: "Royal Obsession",
      billionaire: "Billionaire",
    },
+   spinner: {
+    message: "Finding collections for you...",
+  },
+  submitEmail: {
+    title: "E-mail",
+    subtitle: "Enter your email to get full access",
+    agree: "By continuing I agree with <span>Privacy policy</span> and <span>Terms of use.</span>",
+    button: "Next",
+    errorEmpty: "You need to provide an email.",
+    errorInvalid: "Please enter a valid email address.",
+    placeholder: "Your Email",
+  },
+  thanks: {
+    title: "Thank you",
+    subtitle: "for supporting us and passing quiz",
+    download: "Download my answers",
+    retake: "Retake quiz",
+  },
  };
