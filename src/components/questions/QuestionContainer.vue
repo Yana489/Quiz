@@ -29,7 +29,7 @@
 import { useI18n } from "vue-i18n";
 import { useQuizStore } from "/src/useQuizStore.js";
 import { allIcons } from "/src/constants/constants.js";
-import { defineProps, computed, ref, reactive } from "vue";
+import { defineProps } from "vue";
 
 const i18n = useI18n({ useScope: "global" });
 
@@ -38,6 +38,7 @@ function SetLocale(locale) {
 }
 
 const store = useQuizStore();
+
 const props = defineProps({
   currentPage: {
     type: Number,
@@ -56,42 +57,37 @@ const selectAnswer = (answer) => {
   const isMultiSelectPage = currentPage === 4 || currentPage === 5;
 
   if (!isMultiSelectPage) {
-    question.selectedAnswer = answer;
-
-    if (currentPage === 1) {
-      const languages = {
-        English: "en",
-        French: "fr",
-        German: "de",
-        Spanish: "es",
-      };
-      SetLocale(languages[answer]);
-    }
+    handleSingleSelect(answer);
     return;
   }
 
+  handleMultiSelect(answer);
+};
+
+const handleSingleSelect = (answer) => {
+  question.selectedAnswer = answer;
+
+  if (props.currentPage === 1) {
+    const languages = {
+      English: "en",
+      French: "fr",
+      German: "de",
+      Spanish: "es",
+    };
+    SetLocale(languages[answer]);
+  }
+};
+
+const handleMultiSelect = (answer) => {
   if (isSelectedAnswer(answer)) {
     removeAnswer(answer);
-    console.log(question.selectedAnswer);
     return;
   }
 
-  const maxAnswers = currentPage === 4 ? Infinity : 3;
+  const maxAnswers = props.currentPage === 4 ? Infinity : 3;
   if (question.selectedAnswer.length < maxAnswers) {
     question.selectedAnswer.push(answer);
   }
-  // if (props.currentPage === 4 || props.currentPage === 5) {
-  //   if (isSelectedAnswer(answer)) {
-  //     removeAnswer(answer);
-  //   } else if (
-  //     props.currentPage === 4 ||
-  //     (props.currentPage === 5 && question.selectedAnswer.length < 3)
-  //   ) {
-  //     question.selectedAnswer.push(answer);
-  //   }
-  // } else {
-  //   question.selectedAnswer = answer;
-  // }
 };
 
 const removeAnswer = (answer) => {

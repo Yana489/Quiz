@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits, computed } from "vue";
+import { ref, defineEmits } from "vue";
 import { useI18n } from "vue-i18n";
 import EmailInput from "@/components/EmailInput.vue";
 
@@ -33,22 +33,22 @@ const validateEmail = (email) => {
 };
 
 const showError = () => {
-  if (email.value === "") {
-    error.value = t("submitEmail.errorEmpty");
-  } else if (!validateEmail(email.value)) {
-    error.value = t("submitEmail.errorInvalid");
-  } else {
-    error.value = "";
-    emits("submitEmail");
-    console.log("11")
+  if (!email.value) {
+    return (error.value = t("submitEmail.errorEmpty"));
   }
+
+  if (!validateEmail(email.value)) {
+    return (error.value = t("submitEmail.errorInvalid"));
+  }
+
+  error.value = "";
+  emits("submitEmail");
 };
 
 const updateNewValue = (newValue) => {
   email.value = newValue;
   showError();
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -63,10 +63,5 @@ const updateNewValue = (newValue) => {
   width: 300px;
   margin: 0 auto;
   padding-bottom: 50px;
-}
-
-.email-agree span {
-  color: $color_1;
-  cursor: pointer;
 }
 </style>

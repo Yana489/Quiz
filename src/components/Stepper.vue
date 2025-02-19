@@ -1,13 +1,17 @@
 <template>
-  <div v-if="showBackArrow">
-    <BackArrow @onBackArrow="emits('changeBackCurrentPage')"></BackArrow>
-    {{ currentPage }}
+  <BackArrow
+    v-if="showBackArrow"
+    @onBackArrow="emits('changeBackCurrentPage')"
+  ></BackArrow>
+  <div v-if="showStepper">
+    {{ currentPage }}/5
     <div class="stepper-container">
       <div class="stepper" :style="{ width: loaderWidth }"></div>
     </div>
   </div>
   <slot></slot>
-  <CommonButton v-if="currentPage !== 6 && currentPage !== 8"
+  <CommonButton
+    v-if="currentPage !== 6 && currentPage !== 8"
     :buttonTitle="$t('submitEmail.button')"
     :disabled="disabled"
     @onClickButton="emits('changeNextCurrentPage')"
@@ -23,9 +27,8 @@ import { useQuizStore } from "/src/useQuizStore.js";
 import { useI18n } from "vue-i18n";
 
 const store = useQuizStore();
-const { t } = useI18n();
 
-const emits = defineEmits(["changeNextCurrentPage", "changeBackCurrentPage","changeNextPage", "submitEmail"]);
+const emits = defineEmits(["changeNextCurrentPage", "changeBackCurrentPage"]);
 
 const props = defineProps({
   currentPage: {
@@ -40,6 +43,10 @@ const props = defineProps({
 
 const showBackArrow = computed(() => {
   return props.currentPage > 1 && props.currentPage < 6;
+});
+
+const showStepper = computed(() => {
+  return props.currentPage < 6;
 });
 
 const loaderWidth = computed(() => {

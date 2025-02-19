@@ -11,8 +11,6 @@ import { useI18n } from "vue-i18n";
 import { VueSpinner } from "vue3-spinners";
 import { ref, defineEmits } from "vue";
 
-const { t } = useI18n();
-
 const emit = defineEmits(["changeNextPage"]);
 
 const loader = ref(0);
@@ -37,9 +35,10 @@ interval = setInterval(() => {
   max-width: 400px;
   margin: 170px auto;
   text-align: center;
-}
-.spinner {
-  font-size: 100px;
-  color: $color_1;
+
+  .spinner {
+    font-size: 100px;
+    color: $color_1;
+  }
 }
 </style>

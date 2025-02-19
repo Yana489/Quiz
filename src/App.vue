@@ -5,10 +5,12 @@
       :disabled="isDisabled"
       @changeNextCurrentPage="changeNextCurrentPage"
       @changeBackCurrentPage="changeBackCurrentPage"
-      @submitEmail="updateEmail"
-      @changeNextPage="changeNextPage"
-      @retakeQuiz="resetQuiz"
-      ><component :is="currentComponent"></component
+      ><component
+        @changeNextPage="changeNextCurrentPage"
+        @submitEmail="updateEmail"
+        @retakeQuiz="resetQuiz"
+        :is="currentComponent"
+      ></component
     ></Stepper>
   </div>
 </template>
@@ -53,10 +55,6 @@ const changeNextCurrentPage = () => {
   }
 };
 
-const changeNextPage = () => {
-  currentPage.value++;
-};
-
 const changeBackCurrentPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
@@ -68,7 +66,6 @@ const updateEmail = () => {
 };
 
 const resetQuiz = () => {
-  console.log("1")
   currentPage.value = 1;
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <button class="common-button" :disabled="disabled" @click="onClickButton">
-    {{buttonTitle}}
+    {{ buttonTitle }}
   </button>
 </template>
 
@@ -14,14 +14,14 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  buttonTitle:{
+  buttonTitle: {
     type: String,
-    required:true
-  }
+    required: true,
+  },
 });
 
 const onClickButton = () => {
-    emits("onClickButton");
+  emits("onClickButton");
 };
 </script>
 

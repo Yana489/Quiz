@@ -3,10 +3,10 @@
     <h2>{{ $t("thanks.title") }}</h2>
     <h4>{{ $t("thanks.subtitle") }}</h4>
   </div>
-  <img :src="Check" alt="Check" class="thanks-check" />
+  <img class="thanks-check" :src="Check" alt="Check" />
   <div class="thanks-download">
-    <img :src="Download" alt="Download" class="thanks-icon-download" />
-    <a href="" @click.prevent="downloadCSV">{{ $t("thanks.download") }}</a>
+    <img class="thanks-icon-download" :src="Download" alt="Download" />
+    <a @click.prevent="downloadCSV">{{ $t("thanks.download") }}</a>
   </div>
   <CommonButton
     :buttonTitle="$t('thanks.retake')"
@@ -18,9 +18,10 @@
 import Check from "/src/assets/icons/check.svg";
 import Download from "/src/assets/icons/download.svg";
 import CommonButton from "@/components/CommonButton.vue";
+
 import { useQuizStore } from "/src/useQuizStore.js";
 import { useI18n } from "vue-i18n";
-import { defineEmits, defineProps } from "vue";
+import { defineEmits } from "vue";
 
 const { t } = useI18n();
 
@@ -29,13 +30,11 @@ const emit = defineEmits(["retakeQuiz"]);
 const store = useQuizStore();
 
 const downloadCSV = () => {
-  const responses = store.questions.map((question, index) => ({
-    order: index + 1,
-    title: t(question.title),
-    type: question.type,
+  const responses = store.questions.map((question) => ({
+    question: t(question.title),
     answer: Array.isArray(question.selectedAnswer)
-      ? question.selectedAnswer.join(", ")
-      : question.selectedAnswer,
+      ? question.selectedAnswer.map((optionValue) => t(optionValue)).join(", ")
+      : t(question.selectedAnswer),
   }));
 
   const csvContent = convertToCSV(responses);
@@ -66,6 +65,7 @@ const retakeQuiz = () => {
 
 <style lang="scss" scoped>
 @import "@/assets/style.scss";
+
 .thanks-title {
   color: $color_2;
   margin: 40px;
@@ -77,11 +77,16 @@ const retakeQuiz = () => {
 
 .thanks-download {
   display: flex;
-  color: $text-color;
+  color: $color_1;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+
+  .thanks-icon-download {
+    filter: invert(47%) sepia(93%) saturate(4993%) hue-rotate(240deg)
+      brightness(96%) contrast(60%);
+  }
 }
 </style>

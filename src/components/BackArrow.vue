@@ -8,10 +8,11 @@
 </template>
 
 <script setup>
-import BackArrow from "../assets/icons/Back-Arrow.svg";
+import BackArrow from "../assets/icons/backArrow.svg";
 import { defineEmits } from "vue";
 
 const emits = defineEmits(["onBackArrow"]);
+
 const onBackArrow = () => {
   emits("onBackArrow");
 };
