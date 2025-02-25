@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import EmailInput from "@/components/EmailInput.vue";
 
@@ -52,7 +52,7 @@ const updateNewValue = (newValue) => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .error-message {
   color: red;

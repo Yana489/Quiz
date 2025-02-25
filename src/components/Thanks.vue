@@ -21,7 +21,6 @@ import CommonButton from "@/components/CommonButton.vue";
 
 import { useQuizStore } from "/src/useQuizStore.js";
 import { useI18n } from "vue-i18n";
-import { defineEmits } from "vue";
 
 const { t } = useI18n();
 
@@ -64,7 +63,7 @@ const retakeQuiz = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .thanks-title {
   color: $color_2;

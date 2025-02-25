@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps } from "vue";
-
 const emits = defineEmits(["onClickButton"]);
 
 const props = defineProps({
@@ -26,7 +24,7 @@ const onClickButton = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .common-button {
   font-family: $font-family;

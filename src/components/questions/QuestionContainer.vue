@@ -29,7 +29,6 @@
 import { useI18n } from "vue-i18n";
 import { useQuizStore } from "/src/useQuizStore.js";
 import { allIcons } from "/src/constants/constants.js";
-import { defineProps } from "vue";
 
 const i18n = useI18n({ useScope: "global" });
 
@@ -106,7 +105,7 @@ const isSelectedAnswer = (answer) => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .answer-container {
   display: flex;

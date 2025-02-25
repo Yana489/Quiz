@@ -9,7 +9,6 @@
 
 <script setup>
 import BackArrow from "../assets/icons/backArrow.svg";
-import { defineEmits } from "vue";
 
 const emits = defineEmits(["onBackArrow"]);
 
@@ -19,7 +18,7 @@ const onBackArrow = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .back-arrow {
   display: flex;

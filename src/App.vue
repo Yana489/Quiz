@@ -71,7 +71,7 @@ const resetQuiz = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .component {
   font-family: $font-family;

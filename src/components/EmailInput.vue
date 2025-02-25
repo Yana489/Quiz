@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
 import { useI18n } from "vue-i18n";
 
 defineProps(["modelValue"]);
@@ -24,7 +23,7 @@ const updateInput = (event) => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .email-input {
   font-family: $font-family;

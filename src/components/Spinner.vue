@@ -9,7 +9,7 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 import { VueSpinner } from "vue3-spinners";
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 
 const emit = defineEmits(["changeNextPage"]);
 
@@ -27,7 +27,7 @@ interval = setInterval(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .spinner-container {
   color: $color_2;

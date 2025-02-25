@@ -22,7 +22,7 @@
 import BackArrow from "@/components/BackArrow.vue";
 import CommonButton from "@/components/CommonButton.vue";
 
-import { defineProps, defineEmits, computed } from "vue";
+import { computed } from "vue";
 import { useQuizStore } from "/src/useQuizStore.js";
 import { useI18n } from "vue-i18n";
 
@@ -57,7 +57,7 @@ const loaderWidth = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style.scss";
+@use "@/assets/style.scss" as *;
 
 .stepper-container {
   width: 70%;
